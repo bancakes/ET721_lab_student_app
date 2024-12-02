@@ -1,0 +1,8 @@
+*{box-sizing: border-box;}
+.maincontainer{
+    width: 800px;
+    background-color: aliceblue;
+    margin: 5em auto;
+    padding: 2em;
+}
+.apptitle{text-align: center;}
