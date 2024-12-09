@@ -20,9 +20,9 @@ from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('', include('blog.urls')),           # Blog app URLs
-    path('images/', include('imageupload.urls')),  # Image upload app URLs
-    path('todos/', include('todo.urls')),      # To-do list app URLs
+     path('to_do_list/', include('to_do_list.urls')),
+    path('blog/', include('blog.urls')),
+    path('upload_notes/', include('upload_notes.urls')),
 ]
 
 from django.conf import settings
