@@ -1,16 +1,27 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>To-Do List</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <h1>To-Do List</h1>
+    <h1>Task List</h1>
+    <a href="{% url 'task_create' %}">Create New Task</a>
     <ul>
         {% for task in tasks %}
-        <li>
-            {{ task.title }} - {{ task.category }}
-            {% if task.completed %}(Completed){% endif %}
-        </li>
+            <li>
+                <strong>{{ task.title }}</strong> - Due: {{ task.due_date }}
+                <a href="{% url 'task_update' task.pk %}">Edit</a>
+                <a href="{% url 'task_delete' task.pk %}">Delete</a>
+                {% if not task.completed %}
+                    <a href="{% url 'task_complete' task.pk %}">Mark as Completed</a>
+                {% else %}
+                    <span>Completed</span>
+                {% endif %}
+            </li>
         {% endfor %}
     </ul>
 </body>

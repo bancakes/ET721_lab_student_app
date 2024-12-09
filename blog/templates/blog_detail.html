@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.content }}</p>
+    <h3>Comments:</h3>
+    <ul>
+        {% for comment in comments %}
+            <li>{{ comment.text }} - {{ comment.created_at }}</li>
+        {% endfor %}
+    </ul>
+    
+    <h3>Add Comment:</h3>
+    <form method="POST">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    <a href="{% url 'blog_list' %}">Back to Blog List</a>
+</body>
+</html>

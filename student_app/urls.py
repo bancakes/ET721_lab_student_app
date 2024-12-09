@@ -1,5 +1,5 @@
 """
-URL configuration for todolist project.
+URL configuration for student_app project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.1/topics/http/urls/
@@ -17,15 +17,12 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from . import views 
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-     path('to_do_list/', include('to_do_list.urls')),
+    path('admin/', admin.site.urls),
+    path('tasks/', include('to_do_list.urls')),
     path('blog/', include('blog.urls')),
     path('upload_notes/', include('upload_notes.urls')),
+    path('', views.home, name='home'),
 ]
-
-from django.conf import settings
-from django.conf.urls.static import static
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
