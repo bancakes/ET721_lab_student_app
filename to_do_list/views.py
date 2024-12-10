@@ -9,9 +9,9 @@ def task_list(request):
 
 def task_create(request):
     if request.method == 'POST':
-        task_name = request.POST.get('name')
-        if task_name:
-            Task.objects.create(name=task_name)
+        task_title = request.POST.get('title')
+        if task_title:
+            Task.objects.create(title=task_title)
             return redirect('task_list')
         # Handle task creation here (you'll likely need a form)
     
@@ -34,3 +34,19 @@ def task_complete(request, pk):
     task.completed = True  # Mark the task as completed (assuming a boolean field `completed`)
     task.save()
     return redirect('task_list')  # Redirect to the task list view
+
+def task_edit(request, task_id):
+    task = get_object_or_404(Task, id=task_id)
+    if request.method == 'POST':
+        task_title =request.POST.get('title')
+        task_description = request.POST.get('description')
+        task_completed = request.POST.get('completed')
+
+        if task_title:
+            task.title = task_title
+            task.description = task_description
+            task.completed = task_completed
+            task.save()
+            return redirect('task_list')
+        
+    return render(request, 'to_do_list/task_edit.html', {'task' : task})
