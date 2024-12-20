@@ -12,9 +12,11 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -119,11 +121,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = '/static/'
 
-# If you want to collect all static files to one location for production use:
+# This is where Django will look for static files
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',  # You can put additional static files here
+    os.path.join(BASE_DIR, 'static'),  # This points to the static folder outside of apps
 ]
 
 # Directory where static files are collected when running `collectstatic`

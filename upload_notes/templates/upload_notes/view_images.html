@@ -5,17 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Images</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 </head>
 <body>
     <h1>Uploaded Images</h1>
     <ul>
         {% for image in images %}
             <li>
-                <img src="{{ image.image.url }}" alt="Image" width="200">
-                <a href="{{ image.image.url }}" download>Download</a>
+                {% if image.image %}
+                    <img src="{{ image.image.url }}" alt="Image" width="200">
+                    <a href="{{ image.image.url }}" download>Download</a>
+                {% else %}
+                    <p>No image available.</p>
+                {% endif %}
             </li>
         {% endfor %}
     </ul>
+    <a href="{% url 'home' %}">Back to Home</a>
+
 </body>
 </html>

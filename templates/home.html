@@ -1,14 +1,16 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 </head>
 <body>
     <h1>Welcome to the Student App Dashboard!</h1>
     <a href="{% url 'task_list' %}">View Tasks</a> | 
     <a href="{% url 'blog_list' %}">View Blog Posts</a> |
-    <a href="{% url 'upload_image' %}">Upload Notes</a>
+    <a href="{% url 'view_images' %}">Upload Notes</a>
 </body>
 </html>

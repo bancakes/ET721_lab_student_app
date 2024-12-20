@@ -1,9 +1,11 @@
+{% load static %}
 <!-- to_do_list/templates/to_do_list/task_create.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Create Task</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 </head>
 <body>
     <h1>Create a New Task</h1>
@@ -13,5 +15,7 @@
         <input type="text" name="title" id="title" placeholder="Enter task title" required>
         <button type="submit">Create Task</button>
     </form>
+    <a href="{% url 'home' %}">Back to Home</a>
+
 </body>
 </html>
