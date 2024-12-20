@@ -24,10 +24,12 @@ def task_update(request, pk):
         pass
     return render(request, 'to_do_list/task_edit.html', {'task': task})
 
-def task_delete(request, pk):
-    task = get_object_or_404(Task, pk=pk)
-    task.delete()
-    return redirect('task_list')  # Redirect to the task list view
+def task_confirm_delete(request, item_id):
+    task = get_object_or_404(Task, pk=item_id)
+    if request.method == 'POST':
+        task.delete()
+        return redirect('task_list')  # Redirect to the task list after deletion
+    return render(request, 'to_do_list/task_confirm_delete.html', {'task': task})
 
 def task_complete(request, pk):
     task = get_object_or_404(Task, pk=pk)
@@ -38,15 +40,15 @@ def task_complete(request, pk):
 def task_edit(request, task_id):
     task = get_object_or_404(Task, id=task_id)
     if request.method == 'POST':
-        task_title =request.POST.get('title')
+        task_title = request.POST.get('title')
         task_description = request.POST.get('description')
-        task_completed = request.POST.get('completed')
+        task_completed = request.POST.get('completed') == 'on'  # Check if checkbox is checked
 
-        if task_title:
+        if task_title:  # Ensure the title is provided
             task.title = task_title
             task.description = task_description
             task.completed = task_completed
-            task.save()
-            return redirect('task_list')
-        
-    return render(request, 'to_do_list/task_edit.html', {'task' : task})
+            task.save()  # Save the changes to the task
+            return redirect('task_list')  # Redirect to the task list after saving changes
+    
+    return render(request, 'to_do_list/task_edit.html', {'task': task})

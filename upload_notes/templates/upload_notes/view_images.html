@@ -9,12 +9,14 @@
 </head>
 <body>
     <h1>Uploaded Images</h1>
+    <a href="{% url 'upload_image' %}">Upload Notes </a>
     <ul>
         {% for image in images %}
             <li>
                 {% if image.image %}
                     <img src="{{ image.image.url }}" alt="Image" width="200">
                     <a href="{{ image.image.url }}" download>Download</a>
+                    
                 {% else %}
                     <p>No image available.</p>
                 {% endif %}

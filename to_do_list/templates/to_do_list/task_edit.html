@@ -22,9 +22,8 @@
         <input type="checkbox" id="completed" name="completed" {% if task.completed %}checked{% endif %}><br><br>
 
         <button type="submit">Save Changes</button>  <!-- This submits the form -->
-        <a href="{% url 'task_list' %}">Cancel</a>  <!-- This cancels and redirects to the task list -->
-        <a href="{% url 'home' %}">Back to Home</a> <!-- This sends back to the home page
-
     </form>
+      <a href="{% url 'task_list' %}">Cancel</a>  <!-- This cancels and redirects to the task list -->
+        <a href="{% url 'home' %}">Back to Home</a> 
 </body>
 </html>
